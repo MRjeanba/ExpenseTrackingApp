@@ -12,7 +12,7 @@ public class ExpenseTrackingController : ControllerBase
     {
         List<String> expenses = new List<string> 
         {
-            "noob","test"
+            "test"
         };
         return expenses;
     }
