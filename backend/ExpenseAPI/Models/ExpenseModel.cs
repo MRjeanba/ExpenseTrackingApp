@@ -3,16 +3,24 @@ namespace ExpenseAPI.Models;
 public class ExpenseModel
 {
     private string title { get; set; }
-    private int price { get; set; }
+    private double price { get; set; }
     public string? description { get; set; }
-    public int uuId { get; set; }
+    public Guid uuId { get; set; }
     public DateTime date { get; set; }
     
+    public ExpenseModel(string title, double price, string description)
+    {
+        this.title = title;
+        this.price = price;
+        this.description = description;
+        this.uuId = Guid.NewGuid();
+        this.date = DateTime.Now;
+    }
     public string getTitle()
     {
         return this.title;
     }
-    public int getPrice()
+    public double getPrice()
     {
         return this.price;
     }
@@ -20,7 +28,7 @@ public class ExpenseModel
     {
         return this.description;
     }
-    public int getId()
+    public Guid getId()
     {
         return this.uuId;
     }
