@@ -2,10 +2,10 @@ namespace ExpenseAPI.Models;
 
 public class ExpenseModel
 {
-    private string title { get; set; }
-    private double price { get; set; }
+    public string title { get; set; }
+    public double price { get; set; }
     public string? description { get; set; }
-    public Guid uuId { get; set; }
+    private Guid uuId { get; set; }
     public DateTime date { get; set; }
     
     public ExpenseModel(string title, double price, string description)
@@ -13,26 +13,26 @@ public class ExpenseModel
         this.title = title;
         this.price = price;
         this.description = description;
-        this.uuId = Guid.NewGuid();
-        this.date = DateTime.Now;
+        uuId = Guid.NewGuid();
+        date = DateTime.Now;
     }
-    public string getTitle()
+    public string GetTitle()
     {
         return this.title;
     }
-    public double getPrice()
+    public double GetPrice()
     {
         return this.price;
     }
-    public string? getDescription()
+    public string? GetDescription()
     {
         return this.description;
     }
-    public Guid getId()
+    public Guid GetId()
     {
         return this.uuId;
     }
-    public DateTime getDate()
+    public DateTime GetDate()
     {
         return this.date;
     }
