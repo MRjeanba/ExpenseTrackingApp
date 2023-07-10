@@ -1,3 +1,4 @@
+using ExpenseAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseAPI.Controllers;
