@@ -5,7 +5,7 @@ public class ExpenseModel
     public string title { get; set; }
     public double price { get; set; }
     public string? description { get; set; }
-    private Guid uuId { get; set; }
+    public Guid uuId { get; set; }
     public DateTime date { get; set; }
     
     public ExpenseModel(string title, double price, string description)

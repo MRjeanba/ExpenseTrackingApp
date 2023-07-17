@@ -14,23 +14,53 @@ public class ExpenseTrackingController : ControllerBase
         new ExpenseModel("Another dummy expense", 16.99, "THis is the second dummy description"),
     };
     
+    // Create
     [HttpPost]
     [Route("AddExpense")]
-    public ActionResult<ExpenseModel> AddExpense(ExpenseModel model)
+    public ActionResult<ExpenseModel> AddExpense(ExpenseModelDto model)
     {
-        dummyExpenses.Add(model);
+        ExpenseModel newModel = new ExpenseModel(model.title, model.price, model.description);
+        dummyExpenses.Add(newModel);
         return Ok(model);
     }
     
+    // Read
     [HttpGet]
     [Route("GetAllExpenses")]
     public ResponseModel GetExpenses()
     {
         return new ResponseModel(HttpStatusCode.Accepted,dummyExpenses);
     }
-    
 
+    // Update
+    [HttpPut]
+    [Route("UpdateExpense/{id}")]
+    public ResponseModel UpdateExpense(ExpenseModelDto updatedModel, Guid id)
+    {
+        ExpenseModel update = dummyExpenses.First(model => model.GetId() == id);
 
-
+        if (update != null)
+        {
+            update.description = updatedModel.description;
+            update.title = updatedModel.title;
+            update.price = updatedModel.price;
+            return new ResponseModel(HttpStatusCode.Accepted,dummyExpenses);
+        }
+        return new ResponseModel(HttpStatusCode.NotFound, dummyExpenses);
+        
+    }
+    // Delete
+    [HttpDelete]
+    [Route("DeleteExpense/{id}")]
+    public ResponseModel DeleteExpense(Guid id)
+    {
+        ExpenseModel toDelete = dummyExpenses.First(expense => expense.GetId() == id);
+        if (toDelete != null)
+        {
+            dummyExpenses.Remove(toDelete);
+            return new ResponseModel(HttpStatusCode.Accepted,dummyExpenses);
+        }
+        return new ResponseModel(HttpStatusCode.NotFound, dummyExpenses);
+    }
 
 }
