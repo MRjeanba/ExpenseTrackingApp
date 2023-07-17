@@ -10,7 +10,8 @@
 *.userosscache
 *.sln.docstates
 
-.idea*
+# intellij configs
+.idea/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -63,6 +64,9 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
+*.dll
+*.mdb
+*.apk
 
 # Tye
 .tye/
