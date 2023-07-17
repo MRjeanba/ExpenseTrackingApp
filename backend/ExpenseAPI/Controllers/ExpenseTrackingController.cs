@@ -44,10 +44,23 @@ public class ExpenseTrackingController : ControllerBase
             update.description = updatedModel.description;
             update.title = updatedModel.title;
             update.price = updatedModel.price;
+            return new ResponseModel(HttpStatusCode.Accepted,dummyExpenses);
         }
-
+        return new ResponseModel(HttpStatusCode.NotFound, dummyExpenses);
         
-        return new ResponseModel(HttpStatusCode.Accepted,dummyExpenses);
+    }
+    // Delete
+    [HttpDelete]
+    [Route("DeleteExpense/{id}")]
+    public ResponseModel DeleteExpense(Guid id)
+    {
+        ExpenseModel toDelete = dummyExpenses.First(expense => expense.GetId() == id);
+        if (toDelete != null)
+        {
+            dummyExpenses.Remove(toDelete);
+            return new ResponseModel(HttpStatusCode.Accepted,dummyExpenses);
+        }
+        return new ResponseModel(HttpStatusCode.NotFound, dummyExpenses);
     }
 
 }
